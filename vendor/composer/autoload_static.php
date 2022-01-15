@@ -70,7 +70,12 @@ class ComposerStaticInitb58ff342b6112ff79411bb6f3d572a29
 
     public static $classMap = array (
         'AltoRouter' => __DIR__ . '/..' . '/altorouter/altorouter/AltoRouter.php',
+        'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\BaseRoute' => __DIR__ . '/../..' . '/app/Providers/BaseRoute.php',
+        'App\\Providers\\Connection' => __DIR__ . '/../..' . '/app/Providers/Connection.php',
+        'App\\Providers\\QueryBuilder' => __DIR__ . '/../..' . '/app/Providers/QueryBuilder.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Dotenv\\Dotenv' => __DIR__ . '/..' . '/vlucas/phpdotenv/src/Dotenv.php',
