@@ -7,16 +7,40 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\User;
 use App\Providers\Connection;
+use App\Providers\DB2;
 
 class HomeController{
 
-    private $pdo;
-    private $table = 'users';
+    // private $pdo;
+    // private $table = 'users';
 
-    public function __construct()
+    // public function __construct()
+    // {
+    //     $this->pdo = new Connection();
+    //     // $this->pdo = $this->pdo->getmyDB();
+    // }
+
+    private $str;
+    function __construct()
     {
-        $this->pdo = new Connection();
-        // $this->pdo = $this->pdo->getmyDB();
+        $this->str = "";
+    }
+    
+    function addA()
+    {
+        $this->str .= "a";
+        return $this;
+    }
+    
+    function addB()
+    {
+        $this->str .= "b";
+        return $this;
+    }
+    
+    function getStr()
+    {
+        return $this->str;
     }
 
     public function index()
@@ -36,9 +60,11 @@ class HomeController{
         // $user = new User();
         // $b = $user->all();
         // var_dump($b);
-
+        //    var_dump($this->addA()->addB()->getStr());
+        $b = new DB2();
+        $b = $b->select('*')->from('users')->get();
         $product = new Product();
-        var_dump($product->all());
+        var_dump($b);
         die();
         // die();
         // $user->create([

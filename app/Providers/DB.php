@@ -1,27 +1,60 @@
 <?php
 namespace App\Providers;
 
+/**
+ * بوسیله تکه تکه کردن کد ها میتوان یک
+ * متد زنجیره حرفه ای ساخت
+ */
 class DB {
 
-    private static $db;
-    private static $table;
+    private $pdo;
+    // در این روش میتوان برای هر متد یک 
+    // پراپرتی هم نام داشت
+    private $select;
+    private $where;
+    private $whereAnd;
+    private $whereOr;
+    //
+    private $query;
 
     public function __construct()
     {
-        self::$db = new QueryBuilder();
-        self::$db = $this->pdo->getmyDB();
+        $this->pdo = new Connection();
+        $this->pdo = $this->pdo->getmyDB();
     }
 
-    public static function table($table)
+    public function select($table, $fields = array('*'))
     {
-        self::$table = $table;
-        return self::$table;
+        $this->select = $this->pdo->query("SELECT {$fields} FROM {$table}");
+        return $this;
     }
 
-    public static function select($datas = array())
+    public function where($key, $value)
     {
-        $table = self::$table;
-        $stmt = self::$db->query("SELECT * FROM {$table}")->fetch();
-        return $stmt;
+        // var_dump($this->query);
+        // json_encode()
+        // die();
+        // 
+        // Object of class PDOStatement could not be converted to string
+        // var_dump($this->query);
+        // die();
+        $this->where .= " WHERE $key = $value " ;
+        // var_dump($this->query);
+        // die();
+        // $this->query->execute([$key => $value]);
+        // $this->query = $this->query->fetchAll();
+        return $this;
+    }
+    
+    public function get()
+    {
+        //https://programmingdive.com/how-to-use-method-chaining-in-php/
+        $this->query = $this->select;
+        $this->query .= $this->where;
+        var_dump($this->query);
+        die();
+        // $query = $query->fetch();
+        
+        return $this->query;
     }
 }
